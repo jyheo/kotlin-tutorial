@@ -1,7 +1,8 @@
 
-# 왜 우리는 코틀린을 공부하려고 하는가?
+# Reference
 
-* 출처: Kotlin in Action, 1장, 2장 코틀린 기초
+* **Kotlin in Action** by Dmitry Jemerov, Svetlana Isakova
+* **The Kotlin Guide for the Busy Java Developer** by Renaud Cerrato
 
 ---
 
