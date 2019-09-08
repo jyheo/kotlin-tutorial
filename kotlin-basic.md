@@ -109,7 +109,7 @@ fun main() {
 ```kotlin
 val a: Int = 10
 var b: Int = 12
-a = 11 // compile error
+// a = 11 // compile error
 b = 13 // OK
 ```
 
@@ -124,6 +124,38 @@ val integer_val : Int = 10  // 타입 명시할 필요 없음
 val string_val : String = "a string" // 타입 명시할 필요 없음
 val type_inference = 10  // Int
 val type_inference2 = "a string"  // String
+```
+
+---
+
+## 타입(Types)
+
+* 코틀린은 자바와 달리  원시타입(primitive types)과 wrapper type을 구분하지 않는다.
+  * Byte, Short, Int, Long, Float, Double, Char, Boolean
+  * UByte, UShort, UInt, ULong
+* 코틀린은 서로 다른 타입의 값을 자동으로 변환 해주지 않기 때문에 명시적으로 값 변환을 해줘야 한다.
+
+```kotlin
+val i = 10
+val i2 : UInt = 10U
+// val l : Long = i  // Compile Error
+val l2 : Long = i.toLong()  // 명시적 값 변환
+```
+
+---
+
+## 문자열(String)
+
+* 자바에서 문자열 중간에 변수값을 추가하고 싶으면 + 연산자를 사용했지만, 코틀린은 문자열 내부에 변수(심지어 expression까지도)를 넣을 수 있다.
+
+```kotlin
+// string.kt
+val version = "1.3.50"
+val java_style = "Hello, Kotlin " + version + "!"
+val kotlin_style = "Hello, Kotlin ${version}!"
+
+val num = 10
+println("val num is equal to 10: ${num == 10}.")
 ```
 
 ---
@@ -154,3 +186,7 @@ fun main() {
 ```
 
 ---
+
+## 배열
+
+* 
