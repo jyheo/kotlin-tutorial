@@ -24,7 +24,7 @@
 * 다운로드 받은 파일 압축을 푼 후 bin/kotlinc 를 실행하면 됨
   * 편의를 위해 bin 폴더를 PATH에 넣어둔다.
 
-```
+```bash
 JVM기반 kotlinc
 $ kotlinc main.kt -include-runtime -d main.jar
 $ java -jar main.jar
@@ -121,10 +121,10 @@ b = 13 // OK
 * 코틀린 변수를 선언할 때 타입을 쓰지 않아도 대입되는 값에 따라 컴파일러가 알아서 타입을 정해준다.
 
 ```kotlin
-val integer_val : Int = 10  // 타입 명시할 필요 없음
-val string_val : String = "a string" // 타입 명시할 필요 없음
-val type_inference = 10  // Int
-val type_inference2 = "a string"  // String
+val integerVal : Int = 10  // 타입 명시할 필요 없음
+val stringVal : String = "a string" // 타입 명시할 필요 없음
+val typeInference = 10  // Int
+val typeInference2 = "a string"  // String
 ```
 
 ---
@@ -151,19 +151,20 @@ val l2 : Long = i.toLong()  // 명시적 값 변환
 * 타입A as 타입B
 
 ```kotlin
+// src/is_as.kt
 fun main() {
     fun test(obj : Any) {
         if (obj is Int) println("obj is Int.")
         if (obj is String) println("obj is String.")
         // println((obj as String))
         // Not Safe, ClassCastException for non-string
-        println("print obj as string > ${(obj as? String ?: "")}")
-        // Elivs(?:) returns empty string if 'as' fail.
+        println("print obj as string > ${(obj as? String ?: "")}") 
+        // Elvis(?:) returns empty string if 'as' fail.
     }
 
     test(1)
     // obj is Int.
-    // print obj as string >
+    // print obj as string > 
     test("strings")
     // obj is String.
     // print obj as string > strings
@@ -189,13 +190,17 @@ println((t is Int)) // true
 * 자바에서 문자열 중간에 변수값을 추가하고 싶으면 + 연산자를 사용했지만, 코틀린은 문자열 내부에 변수(심지어 expression까지도)를 넣을 수 있다.
 
 ```kotlin
-// string.kt
-val version = "1.3.50"
-val java_style = "Hello, Kotlin " + version + "!"
-val kotlin_style = "Hello, Kotlin ${version}!"
+// src/string.kt
+fun main() {
+    val version = "1.3.50"
+    val javaStyle = "Hello, Kotlin " + version + "!"
+    val kotlinStyle = "Hello, Kotlin ${version}!"
+    println(javaStyle)
+    println(kotlinStyle)
 
-val num = 10
-println("val num is equal to 10: ${num == 10}.")
+    val num = 10
+    println("val num is equal to 10: ${num == 10}.")
+}
 ```
 
 ---
@@ -207,7 +212,7 @@ println("val num is equal to 10: ${num == 10}.")
 * 문자열 비교도 당연히 == 연산자를 쓸 수 있다.
 
 ```kotlin
-// compare.kt
+// src/compare.kt
 data class MyClass(val a: Int, val b: String)
 // data class auto-generates equals/hashCode/toString/copy
 
@@ -223,6 +228,7 @@ fun main() {
     println(class1 == class3)  // false
     println(class1 === class2) // false
 }
+
 ```
 
 ---
@@ -232,26 +238,71 @@ fun main() {
 * 배열은 arrayOf(), arrayOfNulls(), emptyArray()로 생성
 
 ```kotlin
+// src/array_basic.kt
 fun main() {
-    val int_arrays = arrayOf(1, 2, 3, 4, 5)
-    val str_arrays = arrayOfNulls<String>(5)
-    val db_arrays = emptyArray<Double>()
+    val intArrays = arrayOf(1, 2, 3, 4, 5)
+    val strArrays = arrayOfNulls<String>(5)
+    val dbArrays = emptyArray<Double>()
 
-    println(int_arrays[0]) // 배열 인덱스에 해당하는 값
-    int_arrays[0] = 10 // val로 정의된 배열이지만, 배열 내의 값은 변경이 가능함
-    println(int_arrays.get(0))
+    println(intArrays[0]) // 배열 인덱스에 해당하는 값
+    intArrays[0] = 10 // val로 정의된 배열이지만, 배열 내의 값은 변경이 가능함
+    println(intArrays[0])
 
-    for (s in str_arrays) { // for를 이용한 배열 순회
+    for (s in strArrays) { // for를 이용한 배열 순회
         print("$s, ")
     }
     println("")
 
-    println(db_arrays.size) // 배열 크기
+    println(dbArrays.size) // 배열 크기
 }
 ```
 
 ---
 
-## Enum
+## for and Iteration
+
+## When
+
+## Function
 
 
+---
+
+## Null Safety
+
+---
+
+
+## Exception
+
+---
+## Collections
+* Array, List, Set, Map (immutable)
+* ArrayList, MutableList, MutableSet, MutableMap (mutable)
+
+```kotlin
+// src/collections.kt
+fun main()
+{
+    val array = arrayOf(1, 2, 3)
+    val arrayList = array.toMutableList() // arrayListOf(1, 2, 3)
+    val list = listOf(1, 2, 3)
+    val mutableList = list.toMutableList() // mutableListOf(1, 2, 3)
+    val set = setOf(1, 2, 3, 3)
+    val mutableSet = set.toMutableSet() // mutableSetOf(1, 2, 3, 3)
+    val map = mapOf("one" to 1, "two" to 2, "three" to 3)
+    val mutableMap = map.toMutableMap() // mutableMapOf("one" to 1, "two" to 2, "three" to 3)
+
+    arrayList.add(4)
+    arrayList[arrayList.lastIndex]++
+    mutableList.add(4)
+    mutableList[0] = 0
+    mutableSet.add(4)
+    mutableMap["four"] = 4
+
+    println(arrayList) // [1, 2, 3, 5]
+    println(mutableList) // [1, 2, 3, 4]
+    println(mutableSet) // [1, 2, 3, 4]
+    println(mutableMap) // {one=1, two=2, three=3, four=4}
+}
+```
