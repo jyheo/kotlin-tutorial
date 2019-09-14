@@ -392,6 +392,38 @@ fun main()
 ---
 
 ## Null Safety
+* null이 가능한 타입과 불가능한 타입 구분
+  * 타입 이름 뒤에 ?를 붙이면 nullable 타입
+  
+```kotlin
+// src/null_safety.kt
+import java.lang.NullPointerException
+
+fun testNull(arg : String?)
+{
+    println(arg?.toUpperCase()) // arg? return null if arg is null
+    println(arg?.toUpperCase() ?: "-") // Elvis(?:) return right operand("-") if left operand is null
+}
+
+fun main()
+{
+    var nullable: String? = null
+    var nonNullable: String = "nonNullable"
+
+    // nonNullable = null // Compile Error
+
+    testNull(nonNullable) // NONNULLABLE NONNULLABLE
+    testNull(nullable) // null -
+
+    // nullable.toUpperCase() // Compile Error
+    nullable?.toUpperCase() // return null because nullable is null
+    try {
+        nullable!!.toUpperCase() // cause Exception!
+    } catch (e : NullPointerException) {
+        println("NullPointerException")
+    }
+}
+```
 
 ---
 
