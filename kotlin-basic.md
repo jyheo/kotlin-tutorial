@@ -144,6 +144,15 @@ val l2 : Long = i.toLong()  // 명시적 값 변환
 ```
 
 ---
+## if 문
+* 자바와 문법은 비슷하지만,
+* 코틀린에서 if는 statement가 아니라 expression으로 사용 가능함
+* 즉 if 문의 결과로 어떠한 값을 받을 수 있음
+
+```kotlin
+val x = if (a > 10) "big" else "small"
+```
+---
 
 ## 타입 체크(is), 타입 변환(as)
 
@@ -305,10 +314,31 @@ fun main()
 }
 ```
 
-## When
-
 ## Function
+* fun 함수이름(매개변수 리스트) { 함수 정의 }
+* Default argument 지원
+* Named argument 지원
 
+```kotlin
+// src/func_basic.kt
+fun myFunc(arg1 : Int, arg2: String = "default", arg3: Int = 10)
+{
+    println("$arg1, $arg2, $arg3")
+}
+
+fun main()
+{
+    myFunc(1, "hello", 5) // 1, hello, 5
+    myFunc(arg1 = 2) // 2, default, 10
+    myFunc(2, arg3 = 5) // 2, default, 5
+}
+```
+
+---
+
+## When
+* switch문과 비슷하지만 expression으로 사용하기 더 편리함
+* 
 
 ---
 
