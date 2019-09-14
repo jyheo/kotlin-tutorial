@@ -1,3 +1,28 @@
+# Kotlin Tutorial (Basic)
+
+## Contents
+
+* Kotlin 설치
+* Kotlin 컴파일러 직접 설치하기
+* Kotlin, Teach yourself
+* 코틀린의 특징
+* 코틀린 철학
+* 패키지(Packages)
+* 변수와 값(Variables & Value)
+* 타입 추론(Type Inference))
+* 타입(Types)
+* if 문
+* 타입 체크(is), 타입 변환(as)
+* Any 타입
+* 문자열(String)
+* 비교 연산(== or ===)
+* 배열
+* for and Iteration
+* Function
+* When
+* Null Safety
+* Exception
+* Collections
 
 # Reference
 
@@ -144,7 +169,9 @@ val l2 : Long = i.toLong()  // 명시적 값 변환
 ```
 
 ---
+
 ## if 문
+
 * 자바와 문법은 비슷하지만,
 * 코틀린에서 if는 statement가 아니라 expression으로 사용 가능함
 * 즉 if 문의 결과로 어떠한 값을 받을 수 있음
@@ -152,6 +179,7 @@ val l2 : Long = i.toLong()  // 명시적 값 변환
 ```kotlin
 val x = if (a > 10) "big" else "small"
 ```
+
 ---
 
 ## 타입 체크(is), 타입 변환(as)
@@ -269,6 +297,7 @@ fun main() {
 ---
 
 ## for and Iteration
+
 * for문은 iterator와 같이 사용하는 것이 편리함
 * 특정 범위의 iterator를 만들기 위해 Range를 사용할 수 있음
   * Range는 시작과 끝 숫자(또는 문자)를 .. 로 연결, 예) 1..10,  'a'..'z'
@@ -315,6 +344,7 @@ fun main()
 ```
 
 ## Function
+
 * fun 함수이름(매개변수 리스트) { 함수 정의 }
 * Default argument 지원
 * Named argument 지원
@@ -347,6 +377,7 @@ fun main()
 ---
 
 ## When
+
 * switch문과 비슷하지만
   * 케이스 마다 타입이 달라도 되며
   * expression으로 사용할 수 있음
@@ -392,6 +423,7 @@ fun main()
 ---
 
 ## Null Safety
+
 * null이 가능한 타입과 불가능한 타입 구분
   * 타입 이름 뒤에 ?를 붙이면 nullable 타입
   
@@ -428,6 +460,7 @@ fun main()
 ---
 
 ## Exception
+
 * try, catch문은 자바와 거의 같으며 try, catch문을 expression을 사용할 수 있음
 * 코틀린은 자바와 달리 모든 예외를 catch하게 강제하지 않음
 
@@ -449,6 +482,7 @@ fun main()
 ```
 ---
 ## Collections
+
 * Array, List, Set, Map (immutable)
 * ArrayList, MutableList, MutableSet, MutableMap (mutable)
 
@@ -478,3 +512,4 @@ fun main()
     println(mutableMap) // {one=1, two=2, three=3, four=4}
 }
 ```
+
