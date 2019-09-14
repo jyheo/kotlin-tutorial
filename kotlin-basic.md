@@ -326,19 +326,68 @@ fun myFunc(arg1 : Int, arg2: String = "default", arg3: Int = 10)
     println("$arg1, $arg2, $arg3")
 }
 
+fun sumFunc(a: Int, b: Int) = a + b
+
 fun main()
 {
     myFunc(1, "hello", 5) // 1, hello, 5
     myFunc(arg1 = 2) // 2, default, 10
     myFunc(2, arg3 = 5) // 2, default, 5
+
+    // local function
+    fun localFunc(a: Int) : Int {
+        return a + 10
+    }
+
+    println(sumFunc(1, 2)) // 3
+    println(localFunc(10)) // 20
 }
 ```
 
 ---
 
 ## When
-* switch문과 비슷하지만 expression으로 사용하기 더 편리함
-* 
+* switch문과 비슷하지만
+  * 케이스 마다 타입이 달라도 되며
+  * expression으로 사용할 수 있음
+  
+```kotlin
+// src/when.kt
+fun test(arg : Any)
+{
+    when(arg) {
+        10 -> println("10")
+        in 0..9 -> println("0 ≤ x ≤ 9")
+        is String -> println("Hello, $arg")
+        !in 0..100 -> println("x < 0 and x > 100")
+        else -> {
+            println("unknown")
+        }
+    }
+}
+
+fun test2(arg : Int) : Int
+{
+    return when(arg) {
+        in 0..9 -> 10
+        in 10..19 -> 20
+        in 20..29 -> 30
+        else -> 40
+    }
+}
+
+fun main()
+{
+    test(10) // 10
+    test(5) // 0 ≤ x ≤ 9
+    test("String") // Hello, String
+    test(200) // x < 0 and x > 100
+    test(50) // unknown
+
+    println(test2(15)) // 20
+    println(test2(50)) // 40
+}
+```
 
 ---
 
@@ -346,9 +395,26 @@ fun main()
 
 ---
 
-
 ## Exception
+* try, catch문은 자바와 거의 같으며 try, catch문을 expression을 사용할 수 있음
+* 코틀린은 자바와 달리 모든 예외를 catch하게 강제하지 않음
 
+```kotlin
+// src/exception.kt
+import java.lang.Integer.parseInt
+import java.lang.NumberFormatException as NFE
+
+fun main()
+{
+    val x = try {
+        parseInt("10")
+    } catch (e : NFE) {
+        0
+    }
+
+    println(x)
+}
+```
 ---
 ## Collections
 * Array, List, Set, Map (immutable)
