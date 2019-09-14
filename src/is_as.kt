@@ -2,7 +2,8 @@ fun main() {
     fun test(obj : Any) {
         if (obj is Int) println("obj is Int.")
         if (obj is String) println("obj is String.")
-        // println((obj as String)) // Not Safe, ClassCastException for non-string
+        // println((obj as String))
+        // Not Safe, ClassCastException for non-string
         println("print obj as string > ${(obj as? String ?: "")}") 
         // Elvis(?:) returns empty string if 'as' fail.
     }
