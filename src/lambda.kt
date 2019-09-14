@@ -1,4 +1,9 @@
 // data class MyClass(val a: Int, val b: String)
+
+fun lambdaTest(a : (Int) -> Int) : Int {
+    return a(10)
+}
+
 fun main()
 {
     val array = arrayOf(MyClass(10, "class1"), MyClass(20, "class2"), MyClass(30, "class3"))
@@ -11,4 +16,6 @@ fun main()
     array.filter { c -> c.a < 15 }
     // 티폴트 매개변수 이름으로 it를 사용할 수 있음
     array.filter { it.a < 15 } // 일반적으로 많이 사용되는 형태
+
+    print(lambdaTest{it + 10})
 }

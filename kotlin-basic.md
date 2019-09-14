@@ -381,11 +381,16 @@ fun main()
 
 * 람다(lambda) 함수는 익명 함수
 * 람다 함수는 { 인자 -> 함수 내용 } 과 같은 형식으로 작성함
-  * 인자가 1개인 경우 생략 가능, 디폴트 인자 사용
+  * 인자가 한개인 경우 디폴트 인자를 써서 인자 생략 가능
 
 ```kotlin
 // src/lambda.kt
 // data class MyClass(val a: Int, val b: String)
+
+fun lambdaTest(a : (Int) -> Int) : Int {
+    return a(10)
+}
+
 fun main()
 {
     val array = arrayOf(MyClass(10, "class1"), MyClass(20, "class2"), MyClass(30, "class3"))
@@ -398,6 +403,8 @@ fun main()
     array.filter { c -> c.a < 15 }
     // 티폴트 매개변수 이름으로 it를 사용할 수 있음
     array.filter { it.a < 15 } // 일반적으로 많이 사용되는 형태
+
+    print(lambdaTest{it + 10})
 }
 ```
 
