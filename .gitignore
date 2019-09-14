@@ -1,2 +1,5 @@
 *.kexe
 *.jar
+.idea/
+*.iml
+out/
