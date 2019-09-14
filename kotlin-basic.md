@@ -145,6 +145,45 @@ val l2 : Long = i.toLong()  // 명시적 값 변환
 
 ---
 
+## 타입 체크(is), 타입 변환(as)
+
+* A is 타입
+* 타입A as 타입B
+
+```kotlin
+fun main() {
+    fun test(obj : Any) {
+        if (obj is Int) println("obj is Int.")
+        if (obj is String) println("obj is String.")
+        // println((obj as String))
+        // Not Safe, ClassCastException for non-string
+        println("print obj as string > ${(obj as? String ?: "")}")
+        // Elivs(?:) returns empty string if 'as' fail.
+    }
+
+    test(1)
+    // obj is Int.
+    // print obj as string >
+    test("strings")
+    // obj is String.
+    // print obj as string > strings
+}
+```
+
+---
+
+## Any 타입
+
+* 자바의 Object와 비슷한 개념으로 코틀린에는 Any가 있음
+* 코틀린은 원시타입(primitive types)에 대해서도 Any가 가능함
+
+```kotlin
+val t : Any = 10
+println((t is Int)) // true
+```
+
+---
+
 ## 문자열(String)
 
 * 자바에서 문자열 중간에 변수값을 추가하고 싶으면 + 연산자를 사용했지만, 코틀린은 문자열 내부에 변수(심지어 expression까지도)를 넣을 수 있다.
@@ -190,4 +229,29 @@ fun main() {
 
 ## 배열
 
-* 
+* 배열은 arrayOf(), arrayOfNulls(), emptyArray()로 생성
+
+```kotlin
+fun main() {
+    val int_arrays = arrayOf(1, 2, 3, 4, 5)
+    val str_arrays = arrayOfNulls<String>(5)
+    val db_arrays = emptyArray<Double>()
+
+    println(int_arrays[0]) // 배열 인덱스에 해당하는 값
+    int_arrays[0] = 10 // val로 정의된 배열이지만, 배열 내의 값은 변경이 가능함
+    println(int_arrays.get(0))
+
+    for (s in str_arrays) { // for를 이용한 배열 순회
+        print("$s, ")
+    }
+    println("")
+
+    println(db_arrays.size) // 배열 크기
+}
+```
+
+---
+
+## Enum
+
+
