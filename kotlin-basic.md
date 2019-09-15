@@ -64,8 +64,11 @@ $ ./main.kexe
 
 ## Kotlin, Teach yourself
 
-* Koans
-* EduTools
+* Koans in Website
+   * https://play.kotlinlang.org/koans/overview
+* EduTools in Intellij IDEA
+  * Installing the EduTools plugin 
+  * Choosing Kotlin Koans course in Welcome dialog
 
 ---
 
