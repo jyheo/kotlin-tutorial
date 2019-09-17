@@ -349,7 +349,9 @@ fun main()
 
 ## Function
 
-* fun 함수이름(매개변수 리스트) { 함수 정의 }
+* fun 함수이름(매개변수 리스트) : 리턴타입 { 함수 정의 }
+* fun 함수이름(매개변수 리스트) = expression
+  * 함수 내용이 expression인 경우, 리턴타입이 추정 가능하므로 생략됨
 * Default argument 지원
 * Named argument 지원
 
