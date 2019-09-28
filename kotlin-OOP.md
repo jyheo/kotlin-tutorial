@@ -194,8 +194,10 @@ fun main() {
 // src/constructor.kt
 class ConstEx1 constructor(_prop: Int) { // primary constructor
     val prop: Int
+    val prop2: Int
     init {
         prop = _prop
+        prop2 = _prop * 2
     }
 }
 
@@ -213,6 +215,16 @@ open class ConstEx4(val prop: Int, val prop2: Int = 0) { // primary constructor
 }
 
 class ConstEx5(_prop: Int) : ConstEx4(_prop) // primary constructor
+
+fun main() {
+    ConstEx1(1)
+    ConstEx2(1)
+    ConstEx3(1)
+    ConstEx4(1)
+    ConstEx4(1, 2)
+    ConstEx4(1, 2, 3)
+    ConstEx5(1)
+}
 ```
 
 ---
@@ -298,12 +310,12 @@ object ClickListenerImpl : ClickListener {
 fun setClickListener(listener: ClickListener) = listener.onClick()
 
 class Touch() { // the number of Touch objects
+    val objectNums : Int
+        get() = num
+
     init {
         num++
     }
-
-    val objectNums : Int
-        get() = num
 
     companion object {
         var num : Int = 0

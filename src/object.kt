@@ -9,12 +9,12 @@ object ClickListenerImpl : ClickListener {
 fun setClickListener(listener: ClickListener) = listener.onClick()
 
 class Touch() { // the number of Touch objects
+    val objectNums : Int
+        get() = num
+
     init {
         num++
     }
-
-    val objectNums : Int
-        get() = num
 
     companion object {
         var num : Int = 0
