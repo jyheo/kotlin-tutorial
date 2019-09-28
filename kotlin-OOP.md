@@ -279,17 +279,47 @@ fun main() {
 
 ## object 키워드
 
----
+* 클래스 정의 없이 바로 객체를 생성하는 방법
+    * 싱글톤을 만들거나
+    * companion object를 만들거나
+    * anonymous object를 만들때 사용
+* Companion object는 이 객체를 포함하는 클래스의 private 멤버에 접근 가능
 
-## 연산자 오버로딩
+```kotlin
+// src/object.kt
+//interface ClickListener {
+//    fun onClick()
+//}
 
----
+object ClickListenerImpl : ClickListener {
+    override fun onClick() = println("clicked")
+}
 
-## Generic
+fun setClickListener(listener: ClickListener) = listener.onClick()
 
----
+class Touch() { // the number of Touch objects
+    init {
+        num++
+    }
 
-## Inheritance
+    val objectNums : Int
+        get() = num
+
+    companion object {
+        var num : Int = 0
+    }
+}
+
+fun main() {
+    setClickListener(ClickListenerImpl)  // clicked
+    setClickListener(object : ClickListener {  // clicked2
+        override fun onClick() = println("clicked2")
+    })
+    Touch()
+    Touch()
+    println(Touch().objectNums) // 3
+}
+```
 
 ---
 
@@ -297,6 +327,39 @@ fun main() {
 
 ---
 
-## Companion object
+## 연산자 오버로딩
 
-## 
+* 이항 산술 연산자 +, -, *, /, % 오버로딩 가능
+    * 오버로딩할 때 연산자 이름 plus, minus, times, div, rem
+* 단항연산자
+    * unaryPlus, unaryMinus, not, inc, dec
+* 비교 연산자
+    * equals, compareTo
+
+```kotlin
+// src/op_overload.kt
+data class Complex(val real: Double, val img: Double) {
+    operator fun plus(other: Complex): Complex
+            = Complex(real + other.real, img + other.img)
+    override fun toString(): String = "$real+${img}i"
+}
+
+operator fun Complex.minus(other: Complex): Complex  // by function extension
+        = Complex(real - other.real, img - other.img)
+
+fun main() {
+    val c1 = Complex(1.0, 1.0)
+    val c2 = Complex(2.0, 2.0)
+    val c3 = c1 + c2
+    println(c3) // 3.0+3.0i
+    println(c3 == Complex(3.0, 3.0)) // true
+}
+```
+
+---
+
+
+
+---
+
+## Generic
