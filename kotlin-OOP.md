@@ -186,13 +186,94 @@ fun main() {
 
 ## Constructor
 
+* Primary constructor: 클래스 이름 옆에 정의하는 생성자
+    * class Person(val name: String)
+* Secondary constructor: 클래스 내부에 정의하는 생성자
+
+```kotlin
+// src/constructor.kt
+class ConstEx1 constructor(_prop: Int) { // primary constructor
+    val prop: Int
+    init {
+        prop = _prop
+    }
+}
+
+class ConstEx2 constructor(_prop: Int) { // primary constructor
+    val prop = _prop
+}
+
+class ConstEx3 constructor(val prop: Int) // primary constructor
+
+open class ConstEx4(val prop: Int, val prop2: Int = 0) { // primary constructor
+    // secondary constructor
+    constructor(_prop: Int, _prop2: Int, _prop3: Int) : this(_prop + _prop3, _prop2) {
+        // do something else
+    }
+}
+
+class ConstEx5(_prop: Int) : ConstEx4(_prop) // primary constructor
+```
+
 ---
 
-## Property
+## Property와 getter/setter
+
+* Property의 커스텀 setter와 getter를 정의할 수 있다.
+    * public인 속성에 대해 setter를 private으로 하면 클래스 밖에서는 get만 가능함
+* Interface에 property를 정의할 수 있으나, 이 property는 구현 클래스에서 반드시 오버라이드 해야 한다.
+
+```kotlin
+// src/getset.kt
+interface GetSetI {
+    var prop: String // the implmentation class must be override this property
+}
+
+class GetSet(_prop: String) : GetSetI {
+    override var prop: String = _prop
+        set(value) {
+            field = value.substringBefore('@')
+        }
+        get() = field.toUpperCase()
+    var prop2: Int = 0
+        private set // prop2 can be changed outside of this class
+}
+
+fun main() {
+    val getset = GetSet("test@removed")
+    println(getset.prop) // TEST@REMOVED
+    getset.prop = "ok@removed"
+    println(getset.prop) // OK
+    // getset.prop2 = 10 // compiler error
+}
+```
 
 ---
 
 ## Data Class
+
+* class 정의 앞에 data 키워드 추가
+* data class auto-generates equals/hashCode/toString/copy
+
+```kotlin
+// src/compare.kt
+data class MyClass(val a: Int, val b: String)
+// data class auto-generates equals/hashCode/toString/copy
+
+fun main() {
+    val str1 = "Hello, Kotlin"
+    val str2 = "Hello, Kotlin"
+    val class1 = MyClass(10, "class1")
+    val class2 = MyClass(10, "class1")
+    val class3 = MyClass(20, "class2")
+
+    println(str1 == str2) // true
+    println(class1 == class2)  // true
+    println(class1 == class3)  // false
+    println(class1 === class2) // false
+}
+
+```
 
 ---
 
