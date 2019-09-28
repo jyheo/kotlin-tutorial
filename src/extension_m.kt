@@ -11,6 +11,6 @@ fun <T> Collection<T>.join(separator: String = " ") : String
 
 fun main()
 {
-    println(listOf("1", "2", "3").join())
-    println(arrayListOf(1, 2, 3).join(", "))
+    println(listOf("1", "2", "3").join()) // 1 2 3
+    println(arrayListOf(1, 2, 3).join(", ")) // 1, 2, 3
 }

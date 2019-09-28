@@ -335,8 +335,44 @@ fun main() {
 
 ---
 
-## Extension Method
+## Extension Method/Property
 
+* 이미 만들어진 클래스의 메소드와 속성을 클래스를 상속하거나 수정하지 않고도 추가할 수 있음
+* 이렇게 추가된 메소드는 오버라이드 안됨
+* 자바의 기존 Collection들에 다양한 유틸 함수들을 이 방법으로 추가
+    * String의 새로운 유틸 함수: substringBefore, substringAfter 등
+
+```kotlin
+// src/extension_m.kt
+// method extension to Collection<T>
+fun <T> Collection<T>.join(separator: String = " ") : String
+{
+    val result = StringBuilder()
+    for ((index, element) in withIndex()) {
+        if (index > 0) result.append(separator)
+        result.append(element)
+    }
+    return result.toString()
+}
+
+fun main()
+{
+    println(listOf("1", "2", "3").join()) // 1 2 3
+    println(arrayListOf(1, 2, 3).join(", ")) // 1, 2, 3
+}
+```
+
+* 속성도 마찬가지로 확장 가능
+
+```kotlin
+// src/extension_p.kt
+val String.lastChar: Char
+    get() = get(length - 1)
+
+fun main() {
+    println("Hello".lastChar)
+}
+```
 ---
 
 ## 연산자 오버로딩
