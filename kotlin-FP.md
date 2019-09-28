@@ -16,4 +16,11 @@
 
 ## Collection lazy,
 
+## Collection 연산자 오버로딩
+* [] get, set
+* in contains
+* ... rangeTo
+* iterator
+
+
 ## apply, with, let, also, run
