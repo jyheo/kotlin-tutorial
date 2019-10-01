@@ -9,7 +9,7 @@ class GetSet(_prop: String) : GetSetI {
         }
         get() = field.toUpperCase()
     var prop2: Int = 0
-        private set // prop2 can be changed outside of this class
+        private set // prop2 cannot be changed outside of this class
 }
 
 fun main() {
