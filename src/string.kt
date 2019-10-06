@@ -8,8 +8,8 @@ fun main() {
     val num = 10
     println("val num is equal to 10: ${num == 10}.")
 
-    println("""\$""")
-    println("\$")
+    println("""\$""") // \$
+    println("\$")     // $
     println("""
         |hello
         |my name is kotlin.
