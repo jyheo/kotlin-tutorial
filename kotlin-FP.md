@@ -48,3 +48,52 @@
 
 
 ## apply, with, let, also, run
+
+---
+
+# 기타
+
+## 가변 인자
+* 가변 인자
+  * vararg를 매개 변수 이름 앞에 사용함
+  * spread 연산자: *를 배열앞에 붙여서 가변 인자로 넘겨줄 수 있음
+
+```kotlin
+val list = listOf(1, 2, 3, 4)
+// fun listOf<T>(vararg values: T) : List<T> { } // 가변 인자 선언
+val args = arrayOf("1", "2", "3", "4")
+val list2 = listOf("0", *args) // spread 연산자
+println(list2) // 0, 1, 2, 3, 4
+```
+
+## Infix Function
+* 함수 이름을 인자 중간에 넣어서 호출
+* 예) mapOf(1 to "one", 2 to "two") 에서 to와 같은 함수
+
+```kotlin
+// Any를 확장(extension)하여 infix to를 정의한 것
+infix fun Any.to(other: Any) = Pair(this, other)
+```
+
+## Destructuring declaration
+* 값 2개를 리턴 받아 2개의 변수에 대입
+
+```kotlin
+// src/destruct.kt
+data class Result(val result: Int, val status: String)
+fun calcSomething(): Result {
+    // computations
+    return Result(404, "Not Found")
+}
+
+fun main() {
+    val (num, str) = 1 to "one"
+    println("$num, $str") // 1, one
+    val collection = mapOf(1 to "one", 2 to "two")
+    for ((a, b) in collection) {
+        println("$a, $b")
+    }
+    val (result, status) = calcSomething()
+    println("$result, $status") // 404, Not Found
+}
+```
