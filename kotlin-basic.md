@@ -229,7 +229,10 @@ println((t is Int)) // true
 ## 문자열(String)
 
 * 자바에서 문자열 중간에 변수값을 추가하고 싶으면 + 연산자를 사용했지만, 코틀린은 문자열 내부에 변수(심지어 expression까지도)를 넣을 수 있다.
-
+* 3중 따옴표를 쓰는 문자열
+    * 어떤 문자든 이스케이프없이 그대로 쓸 수 있음
+    * 여러 행의 문자열도 가능
+    
 ```kotlin
 // src/string.kt
 fun main() {
@@ -241,6 +244,13 @@ fun main() {
 
     val num = 10
     println("val num is equal to 10: ${num == 10}.")
+
+    println("""\$""")
+    println("\$")
+    println("""
+        |hello
+        |my name is kotlin.
+    """.trimMargin())
 }
 ```
 
