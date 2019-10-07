@@ -126,7 +126,62 @@ fun main() {
 }
 ```
 
-## Collection lazy,
+## Collection flatMap과 lambda
+
+* 중첩된 Collection을 하나의 리스트로 생성/리턴
+* flatMap에 주어진 람다는 Iterable 객체를 리턴
+    * 이 Iterable을 모두 연결하여 하나의 List로 만든다.
+    * ```public inline fun <T, R> Iterable<T>.flatMap(transform: (T) → Iterable<R> ): List<R>```
+
+```kotlin
+// src/collection_flat.kt
+fun main() {
+    val list = listOf("abc", "cde", "efg")
+
+    println(list.flatMap { it.toList() }) // [a, b, c, c, d, e, e, f, g]
+    println(list.flatMap { it.toList() }.toSet()) // [a, b, c, d, e, f, g]
+
+    class Classes(val name: String, val students: List<String>)
+    val classes = listOf(Classes("Cprog", listOf("james", "john", "greg")),
+            Classes("OS", listOf("james", "john", "jane", "tom")),
+            Classes("Net", listOf("john", "jane", "alex", "sam")) )
+    // list all student
+    println(classes.flatMap { it.students }.toSet().sorted())
+
+}
+```
+
+## Collection asSequence
+
+* filter, map 등의 함수를 부를 때, 바로 다른 리스트를 생성하게 됨
+* 이런 함수를 매우 큰 데이터에 대해 여러번 이어서 사용하면 매우 느려질 것임
+* 이런 경우 Sequence를 사용하면 
+    * 리스트 생성을 최대한 늦추게 하는 방법임
+    * 실제 리스트 생성 작업을 최대한 늦추기 때문에 lazy 연산이라고 보통 부름
+* Sequence를 사용하여 연산을 끝낸 후에, 다시 toList()로 Collection을 바꾸어 사용함
+
+```kotlin
+// src/collection_lazy.kt
+import kotlin.system.measureTimeMillis
+
+fun main() {
+    val hugeNums = (1..10000000).toList()
+
+    val elapsedTime = measureTimeMillis {
+        hugeNums.map { it * it }.filter { it > 10 }.map { it * it }
+    }
+
+    val elapsedTime2 = measureTimeMillis {
+        hugeNums.asSequence().map { it * it }.filter { it > 10 }.map { it * it }
+    }
+
+    val elapsedTime3 = measureTimeMillis {
+        hugeNums.asSequence().map { it * it }.filter { it > 10 }.map { it * it }.toList()
+    }
+
+    println("$elapsedTime, $elapsedTime2, $elapsedTime3") // 1081, 15, 726
+}
+```
 
 ## Collection 연산자 오버로딩
 * [] get, set
