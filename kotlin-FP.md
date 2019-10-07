@@ -312,9 +312,10 @@ fun main() {
 
 ## Higher order Function
 
----
+* 고차 함수: 다른 함수를 인자로 받거나 리턴하는 함수를 말한다.
+* Collection의 filter, map 등도 고차함수
+* with, apply 등도 고차함수
 
-## Inline Function
 
 ---
 
