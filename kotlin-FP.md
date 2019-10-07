@@ -126,6 +126,8 @@ fun main() {
 }
 ```
 
+---
+
 ## Collection flatMap과 lambda
 
 * 중첩된 Collection을 하나의 리스트로 생성/리턴
@@ -150,6 +152,8 @@ fun main() {
 
 }
 ```
+
+---
 
 ## Collection asSequence
 
@@ -184,19 +188,82 @@ fun main() {
 }
 ```
 
+---
+
+## lambda와 SAM
+
+* SAM: Single Abstract Method의 줄임말, 인터페이스가 하나의 메소드만 가진 경우
+    * View.OnClickListener, Runnable 등 많은 인터페이스가 하나의 메소드만 가짐
+* 코틀린에서 이런 SAM인 경우 무명 클래스 인스턴스를 만드는 것이 아니라 lambda로 처리할 수 있음
+
+```kotlin
+// src/lambda_sam.kt
+fun doSomething(runnable: Runnable) = runnable.run()
+fun doSomething2(runnable: Runnable) = runnable.run()
+
+fun main() {
+    doSomething( Runnable { println("SAM") } )
+
+    doSomething(object : Runnable { // java
+        override fun run() {
+            println("Java way")
+        }
+    })
+
+    val runnable = Runnable { println("SAM") }
+    doSomething(runnable)
+    doSomething2(runnable)
+}
+```
+
+---
+
+## lambda with, apply
+
+* with, apply
+* 객체의 이름을 반복하지 않고 그 객체에 대해 여러 연산을 수행할 수 있음
+* 참고: https://takhyeongmin.github.io/2018/12/03/kotlinUsefulFunction2/
+
+```kotlin
+// src/lambda_with.kt
+fun main() {
+    val str = with (StringBuilder()) {
+        append("Hello, ")
+        append("This ")
+        append("is an example of ")
+        append("lambda with.")
+        toString()
+        // "oops"
+    } // with returns the last expression
+    println(str)
+
+    val str2 = StringBuilder().apply {
+        append("Hello, ")
+        append("This ")
+        append("is an example of ")
+        append("lambda with.")
+    }.toString()  // apply returns StringBuilder
+    println(str2)
+}
+```
+
+---
+
 ## Collection 연산자 오버로딩
 * [] get, set
 * in contains
 * ... rangeTo
 * iterator
 
+---
 
-## apply, with, let, also, run
+## Higher order Function
+
+---
 
 ## Inline Function
 
 
-## 고차 함수
 
 ---
 
