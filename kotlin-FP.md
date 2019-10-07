@@ -28,15 +28,103 @@
 
 ## Lambda
 
-## Infix Function
+* 어원: 람다 대수
+* 이름이 없는 함수
+* 형식:  { 파리미터 -> 함수 바디 }
+    * { x: Int, y: Int -> x + y }
+    * 함수 바디에서 마지막 수식(expression)이 리턴 값이 됨
+* Lambda에서 로컬 변수 참조
+    * val, var 구분 없이 모든 로컬 변수 참조가 가능함
+    
+```kotlin
+// src/lambda.kt
+// data class MyClass(val a: Int, val b: String)
 
-## Inline Function
+fun lambdaTest(a : (Int) -> Int) : Int {
+    return a(10)
+}
 
-## Extension
+fun main()
+{
+    val sum = { x: Int, y: Int -> x + y }
+    println(sum(10, 20))
 
-## 고차 함수
+    val array = arrayOf(MyClass(10, "class1"), MyClass(20, "class2"), MyClass(30, "class3"))
+    println(array.filter({ c: MyClass -> c.a < 15 })) // [MyClass(a=10, b=class1)]
+    // 람다가 함수 인자의 마지막으로 사용되면, 함수의 괄호 밖으로 뺄 수 있음.
+    array.filter() { c: MyClass -> c.a < 15}
+    // 람다가 함수의 유일한 인자이면, 함수의 괄호를 생략 할 수 있음.
+    array.filter { c: MyClass -> c.a < 15 }
+    // 인자 타입 생략 가능한 경우
+    array.filter { c -> c.a < 15 }
+    // 티폴트 매개변수 이름으로 it를 사용할 수 있음
+    array.filter { it.a < 15 } // 일반적으로 많이 사용되는 형태
 
-## Collection, lambda
+    print(lambdaTest { it + 10 })
+
+    val title = "Num:"
+    val list = listOf(1, 2, 3, 4)
+    list.forEach { println("$title $it") } // access title in outside of the lambda
+}
+```
+
+---
+
+## Collection filter, map, groupBy와 lambda
+
+* 함수형 프로그래밍에서 Collection을 다루는 방법
+* lambda가 편리하게 사용됨
+* filter, map
+* filter: 특정 조건을 만족하는 원소만 포함하는 Collection을 생성/리턴
+    * filter에 주어진 람다를 모든 원소에 수행하여 true를 리턴하는 경우만 모음
+    * filter에 넘겨주는 람다는 Boolean을 결과로 하는 수식이어야 함
+* map: 모든 원소에 대해 특정 연산을 수행한 결과를 모아서 Collection을 생성/리턴
+    * map에 주어진 람다를 모든 원소에 대해 수행하고 그 결과를 모음
+* groupBy: 주어진 조건에 따라 Collection을 그룹으로 나눈 후 map을 생성/리턴
+
+```kotlin
+// src/collection_filtermap.kt
+data class Student(val name: String, val age: Int)
+
+fun main() {
+    val data = listOf(Student("Jun", 21), Student("James", 25),
+        Student("Tom", 21), Student("Jane", 23), Student("John", 23))
+    println(data.filter { it.age >= 22 }) // [Student(name=James, age=25), Student(name=Jane, age=23), Student(name=John, age=23)]
+    println(data.map { it.age - 20 }) // [1, 5, 1, 3, 3]
+    println(data.filter { it.age >= 22}.map(Student::name)) // [James, Jane, John]
+    // data.filter { it.age >= 22}.map { it.name }
+    println(data.groupBy { it.age })
+    // {21=[Student(name=Jun, age=21), Student(name=Tom, age=21)], 25=[Student(name=James, age=25)], 23=[Student(name=Jane, age=23), Student(name=John, age=23)]}
+
+    val words = arrayOf("hello", "hi", "hot", "apple", "orange", "access", "order", "about")
+    println(words.groupBy { it.first() })
+    // {h=[hello, hi, hot], a=[apple, access, about], o=[orange, order]}
+}
+```
+
+---
+
+## Collection all, any, count, find와 lambda
+
+* all, any, count, find
+* all: 모든 원소가 특정 조건을 만족하면 true, 그렇지 않은면 false
+* any: 한 원소라도 특정 조건을 만족하면 true, 그렇지 않으면 false
+* count: 특정 조건을 만족하는 원소의 갯수를 리턴
+* find: 특정 조건을 만족하는 가장 처음 원소를 리턴
+
+```kotlin
+// src/collection_allany.kt
+
+fun main() {
+    val nums = arrayOf(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)
+
+    println(nums.all { it is Int }) // true
+    println(nums.all { it > 0 }) // false
+    println(nums.any { it > 0 }) // true
+    println(nums.count { it > 0 }) // 5
+    println(nums.find { it > 0 }) // 1
+}
+```
 
 ## Collection lazy,
 
@@ -48,6 +136,11 @@
 
 
 ## apply, with, let, also, run
+
+## Inline Function
+
+
+## 고차 함수
 
 ---
 

@@ -6,6 +6,9 @@ fun lambdaTest(a : (Int) -> Int) : Int {
 
 fun main()
 {
+    val sum = { x: Int, y: Int -> x + y }
+    println(sum(10, 20))
+
     val array = arrayOf(MyClass(10, "class1"), MyClass(20, "class2"), MyClass(30, "class3"))
     println(array.filter({ c: MyClass -> c.a < 15 })) // [MyClass(a=10, b=class1)]
     // 람다가 함수 인자의 마지막으로 사용되면, 함수의 괄호 밖으로 뺄 수 있음.
@@ -17,5 +20,9 @@ fun main()
     // 티폴트 매개변수 이름으로 it를 사용할 수 있음
     array.filter { it.a < 15 } // 일반적으로 많이 사용되는 형태
 
-    print(lambdaTest{it + 10})
+    print(lambdaTest { it + 10 })
+
+    val title = "Num:"
+    val list = listOf(1, 2, 3, 4)
+    list.forEach { println("$title $it") } // access title in outside of the lambda
 }
