@@ -159,6 +159,7 @@ fun main() {
     * 리스트 생성을 최대한 늦추게 하는 방법임
     * 실제 리스트 생성 작업을 최대한 늦추기 때문에 lazy 연산이라고 보통 부름
 * Sequence를 사용하여 연산을 끝낸 후에, 다시 toList()로 Collection을 바꾸어 사용함
+* 참고: [generateSequence](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/generate-sequence.html)
 
 ```kotlin
 // src/collection_lazy.kt
