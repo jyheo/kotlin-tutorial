@@ -1,8 +1,21 @@
+---
+marp: true
+theme: my-theme
+paginate: true
+headingDivider: 2
+header: Kotlin Tutorial - Basic https://github.com/jyheo/kotlin-tutorial
+footer: 
+backgroundColor: #fff
+---
+
 # Kotlin Tutorial (Basic)
+<!-- _class: lead -->
+### 허준영(jyheo@hansung.ac.kr)
+
 
 ## Contents
-
-* Kotlin 설치
+<!-- _class: double -->
+* Kotlin 설치 
 * Kotlin 컴파일러 직접 설치하기
 * Kotlin, Teach yourself
 * 코틀린의 특징
@@ -25,12 +38,11 @@
 * Exception
 * Collections
 
-# Reference
+## Reference
 
 * **Kotlin in Action** by Dmitry Jemerov, Svetlana Isakova
 * **The Kotlin Guide for the Busy Java Developer** by Renaud Cerrato
 
----
 
 ## Kotlin 설치
 
@@ -38,7 +50,6 @@
 * IntelliJ IDEA를 쓰자. 커뮤니티 버전은 무료, 학생 인증 받으면 Ultimate 버전도 무료
 * https://kotlinlang.org/docs/tutorials/getting-started.html
 
----
 
 ## Kotlin 컴파일러 직접 설치하기
 
@@ -60,7 +71,6 @@ $ kotlinc main.kt -o main
 $ ./main.kexe
 ```
 
----
 
 ## Kotlin, Teach yourself
 
@@ -70,7 +80,7 @@ $ ./main.kexe
   * Installing the EduTools plugin 
   * Choosing Kotlin Koans course in Welcome dialog
 
----
+
 
 ## 코틀린의 특징
 
@@ -82,16 +92,14 @@ $ ./main.kexe
   * statically typed lang. (java, kotlin)
   * dynamically typed lang. (python)
 * Type inference
-
     ```kotlin
-        val x = 1 // x는 integer
-        val x = "Hello" // x는 String
+    val x = 1 // x는 integer
+    val x = "Hello" // x는 String
     ```
-
 * 함수형 언어 (Functional Lang)
 * 오픈 소스
 
----
+
 
 ## 코틀린 철학
 
@@ -102,7 +110,7 @@ $ ./main.kexe
 * 안정성(Null Safety)
 * Interoperability
 
----
+
 
 ## 패키지(Packages)
 
@@ -122,7 +130,7 @@ fun main() {
 // 자바와 달리 main()함수가 독립적으로 존재
 ```
 
----
+
 
 ## 변수와 값(Variables & Value)
 
@@ -143,7 +151,7 @@ var b: Int = 12
 b = 13 // OK
 ```
 
----
+
 
 ## 타입 추론(Type Inference))
 
@@ -156,7 +164,7 @@ val typeInference = 10  // Int
 val typeInference2 = "a string"  // String
 ```
 
----
+
 
 ## 타입(Types)
 
@@ -172,7 +180,7 @@ val i2 : UInt = 10U
 val l2 : Long = i.toLong()  // 명시적 값 변환
 ```
 
----
+
 
 ## if 문
 
@@ -184,7 +192,7 @@ val l2 : Long = i.toLong()  // 명시적 값 변환
 val x = if (a > 10) "big" else "small"
 ```
 
----
+
 
 ## 타입 체크(is), 타입 변환(as)
 
@@ -199,7 +207,7 @@ fun main() {
         if (obj is String) println("obj is String.")
         // println((obj as String))
         // Not Safe, ClassCastException for non-string
-        println("print obj as string > ${(obj as? String ?: "")}") 
+        println("print obj as string > ${(obj as? String ?: "")}")                                  
         // Elvis(?:) returns empty string if 'as' fail.
     }
 
@@ -212,7 +220,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Any 타입
 
@@ -224,7 +232,7 @@ val t : Any = 10
 println((t is Int)) // true
 ```
 
----
+
 
 ## 문자열(String)
 
@@ -232,6 +240,8 @@ println((t is Int)) // true
 * 3중 따옴표를 쓰는 문자열
     * 어떤 문자든 이스케이프없이 그대로 쓸 수 있음
     * 여러 행의 문자열도 가능
+
+## 문자열(String) - 예제
     
 ```kotlin
 // src/string.kt
@@ -254,7 +264,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## 비교 연산(== or ===)
 
@@ -265,7 +275,7 @@ fun main() {
 ```kotlin
 // src/compare.kt
 data class MyClass(val a: Int, val b: String)
-// data class auto-generates equals/hashCode/toString/copy
+// data class auto-generates equals/hashCode/toString/copy                                          
 
 fun main() {
     val str1 = "Hello, Kotlin"
@@ -279,10 +289,9 @@ fun main() {
     println(class1 == class3)  // false
     println(class1 === class2) // false
 }
-
 ```
 
----
+
 
 ## 배열
 
@@ -308,7 +317,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## for and Iteration
 
@@ -320,7 +329,7 @@ fun main() {
 // src/for_loop.kt
 fun main()
 {
-    val array = arrayOf("Hello", "This", "is", "Kotlin")
+    val array = arrayOf("Hello", "This", "is", "Kotlin")                                        
 
     for (a in array) // iterator of array
         print("$a ")
@@ -333,7 +342,10 @@ fun main()
     for (i in 1..10) // with range
         print("$i ")
     println("") // 1 2 3 4 5 6 7 8 9 10
+```
 
+## for and Iteration (계속)
+```kotlin
     for (i in 'a'..'f') // with range
         print("$i ")
     println("") // a b c d e f
@@ -365,6 +377,8 @@ fun main()
 * Default argument 지원
 * Named argument 지원
 
+## Function - 예제
+
 ```kotlin
 // src/func_basic.kt
 fun myFunc(arg1 : Int, arg2: String = "default", arg3: Int = 10)
@@ -390,13 +404,15 @@ fun main()
 }
 ```
 
----
+
 
 ## Function - Lambda
 
 * 람다(lambda) 함수는 익명 함수
 * 람다 함수는 { 인자 -> 함수 내용 } 과 같은 형식으로 작성함
   * 인자가 한개인 경우 디폴트 인자를 써서 인자 생략 가능
+
+## Function - Lambda (예제)
 
 ```kotlin
 // src/lambda.kt
@@ -430,9 +446,9 @@ fun main()
 }
 ```
 
----
 
-## Function - Lambda
+
+## Function - Lambda (예제2)
 
 * 안드로이드 프로그래밍에서 흔히 사용되는 예
 
@@ -443,7 +459,7 @@ fun main()
     }
 ```
 
----
+
 
 ## When
 
@@ -465,7 +481,10 @@ fun test(arg : Any)
         }
     }
 }
+```
 
+## When (계속)
+```kotlin
 fun test2(arg : Int) : Int
 {
     return when(arg) {
@@ -489,7 +508,7 @@ fun main()
 }
 ```
 
----
+
 
 ## Null Safety
 
@@ -505,7 +524,10 @@ fun testNull(arg : String?)
     println(arg?.toUpperCase()) // arg? return null if arg is null
     println(arg?.toUpperCase() ?: "-") // Elvis(?:) return right operand("-") if left operand is null
 }
+```
 
+## Null Safety (계속)
+```kotlin
 fun main()
 {
     var nullable: String? = null
@@ -526,7 +548,7 @@ fun main()
 }
 ```
 
----
+
 
 ## Exception
 
@@ -549,7 +571,7 @@ fun main()
     println(x)
 }
 ```
----
+
 ## Collections
 
 * Array, List, Set, Map (immutable)
@@ -566,7 +588,7 @@ fun main()
     val set = setOf(1, 2, 3, 3)
     val mutableSet = set.toMutableSet() // mutableSetOf(1, 2, 3, 3)
     val map = mapOf("one" to 1, "two" to 2, "three" to 3)
-    val mutableMap = map.toMutableMap() // mutableMapOf("one" to 1, "two" to 2, "three" to 3)
+    val mutableMap = map.toMutableMap() // mutableMapOf("one" to 1, "two" to 2, "three" to 3)                       
 
     arrayList.add(4)
     arrayList[arrayList.lastIndex]++
