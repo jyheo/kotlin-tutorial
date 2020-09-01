@@ -49,14 +49,17 @@ backgroundColor: #fff
 * 코틀린 컴파일러를 쉽게 설치해보려면..
 * IntelliJ IDEA를 쓰자. 커뮤니티 버전은 무료, 학생 인증 받으면 Ultimate 버전도 무료
 * https://kotlinlang.org/docs/tutorials/getting-started.html
+* 안드로이드 스튜디오
+* 온라인 https://play.kotlinlang.org/
+
 
 
 ## Kotlin 컴파일러 직접 설치하기
 
 * IntelliJ IDEA를 쓰면 편하긴 하지만 커맨드 라인에서 간단히 해보고 싶은 경우
 * Github Kotlin Release에서 다운로드
-  * https://github.com/JetBrains/kotlin/releases/tag/v1.3.50
-  * kotlin-compiler-1.3.50.zip : jar로 만들 수 있는 JVM 기반 버전, JDK가 필요함
+  * https://github.com/JetBrains/kotlin
+  * kotlin-compiler-1.X.zip : jar로 만들 수 있는 JVM 기반 버전, JDK가 필요함
   * kotlin-native-????-1.3.50.tar.gz : 네이티브용 kotlin
 * 다운로드 받은 파일 압축을 푼 후 bin/kotlinc 를 실행하면 됨
   * 편의를 위해 bin 폴더를 PATH에 넣어둔다.
@@ -88,6 +91,7 @@ $ ./main.kexe
   * JVM 기반의 서버, 안드로이드
   * 코틀린 자바스크립트
   * 코틀린-native(iOS, MacOS, Android, Windows, Linux)
+  * 코틀린-멀티플랫폼-모바일(KMM)
 * 정적 타입 언어
   * statically typed lang. (java, kotlin)
   * dynamically typed lang. (python)
