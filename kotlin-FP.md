@@ -1,6 +1,17 @@
-# Functional Programming in Kotlin
-
 ---
+marp: true
+theme: my-theme
+paginate: true
+headingDivider: 2
+header: Kotlin Tutorial - Basic https://github.com/jyheo/kotlin-tutorial
+footer: 
+backgroundColor: #fff
+---
+
+# Functional Programming in Kotlin
+<!-- _class: lead -->
+### 허준영(jyheo@hansung.ac.kr)
+
 
 ## Functional Programming (FP) ?
 
@@ -9,6 +20,8 @@
     * 상태 변경(changing state)과 가변 데이터(mutable data)를 쓰지 않는 프로그래밍 패러다임
 * 명령형 프로그래밍(imperative programming)에서는 상태를 바꾸는 것을 강조하는 것과는 달리, 함수형 프로그래밍은 함수의 응용을 강조
 * 1930년대에 계산가능성, 결정문제, 함수정의, 함수응용과 재귀를 연구하기 위해 개발된 형식체계인 람다 대수(lambda-calculus)에 근간을 두고 있다.
+
+## Functional Programming (FP) ? - 계속
 * 수학적 함수와 명령형 프로그래밍에서 사용되는 함수
     * 명령형의 함수는 프로그램의 상태의 값을 바꿀 수 있는 부작용이 생길 수 있다.
     * 이 때문에 명령형 함수는 참조 투명성이 없고, 같은 코드라도 실행되는 프로그램의 상태에 따라 다른 결과값을 낼 수 있다.
@@ -24,7 +37,7 @@
 
 출처: [위키피디아](https://ko.wikipedia.org/wiki/함수형_프로그래밍)
 
----
+
 
 ## Lambda
 
@@ -35,7 +48,9 @@
     * 함수 바디에서 마지막 수식(expression)이 리턴 값이 됨
 * Lambda에서 로컬 변수 참조
     * val, var 구분 없이 모든 로컬 변수 참조가 가능함
-    
+
+## Lambda - 예제
+
 ```kotlin
 // src/lambda.kt
 // data class MyClass(val a: Int, val b: String)
@@ -68,7 +83,7 @@ fun main()
 }
 ```
 
----
+
 
 ## Collection filter, map, groupBy와 lambda
 
@@ -82,6 +97,8 @@ fun main()
     * map에 주어진 람다를 모든 원소에 대해 수행하고 그 결과를 모음
 * groupBy: 주어진 조건에 따라 Collection을 그룹으로 나눈 후 map을 생성/리턴
 
+## Collection filter, map, groupBy와 lambda - 예제
+
 ```kotlin
 // src/collection_filtermap.kt
 data class Student(val name: String, val age: Int)
@@ -89,12 +106,14 @@ data class Student(val name: String, val age: Int)
 fun main() {
     val data = listOf(Student("Jun", 21), Student("James", 25),
         Student("Tom", 21), Student("Jane", 23), Student("John", 23))
-    println(data.filter { it.age >= 22 }) // [Student(name=James, age=25), Student(name=Jane, age=23), Student(name=John, age=23)]
+    println(data.filter { it.age >= 22 }) 
+    // [Student(name=James, age=25), Student(name=Jane, age=23), Student(name=John, age=23)]
     println(data.map { it.age - 20 }) // [1, 5, 1, 3, 3]
     println(data.filter { it.age >= 22}.map(Student::name)) // [James, Jane, John]
     // data.filter { it.age >= 22}.map { it.name }
     println(data.groupBy { it.age })
-    // {21=[Student(name=Jun, age=21), Student(name=Tom, age=21)], 25=[Student(name=James, age=25)], 23=[Student(name=Jane, age=23), Student(name=John, age=23)]}
+    /* {21=[Student(name=Jun, age=21), Student(name=Tom, age=21)],
+        25=[Student(name=James, age=25)], 23=[Student(name=Jane, age=23), Student(name=John, age=23)]} */
 
     val words = arrayOf("hello", "hi", "hot", "apple", "orange", "access", "order", "about")
     println(words.groupBy { it.first() })
@@ -102,7 +121,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Collection all, any, count, find와 lambda
 
@@ -126,7 +145,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Collection flatMap과 lambda
 
@@ -141,7 +160,7 @@ fun main() {
     val list = listOf("abc", "cde", "efg")
 
     println(list.flatMap { it.toList() }) // [a, b, c, c, d, e, e, f, g]
-    println(list.flatMap { it.toList() }.toSet()) // [a, b, c, d, e, f, g]
+    println(list.flatMap { it.toList() }.toSet()) // [a, b, c, d, e, f, g]                          
 
     class Classes(val name: String, val students: List<String>)
     val classes = listOf(Classes("Cprog", listOf("james", "john", "greg")),
@@ -153,7 +172,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Collection asSequence
 
@@ -165,6 +184,7 @@ fun main() {
 * Sequence를 사용하여 연산을 끝낸 후에, 다시 toList()로 Collection을 바꾸어 사용함
 * 참고: [generateSequence](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/generate-sequence.html)
 
+## Collection asSequence - 예제
 ```kotlin
 // src/collection_lazy.kt
 import kotlin.system.measureTimeMillis
@@ -188,7 +208,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## lambda와 SAM
 
@@ -199,7 +219,7 @@ fun main() {
 ```kotlin
 // src/lambda_sam.kt
 fun doSomething(runnable: Runnable) = runnable.run()
-fun doSomething2(runnable: Runnable) = runnable.run()
+fun doSomething2(runnable: Runnable) = runnable.run()                                               
 
 fun main() {
     doSomething( Runnable { println("SAM") } )
@@ -216,7 +236,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## lambda with, apply
 
@@ -227,7 +247,7 @@ fun main() {
 ```kotlin
 // src/lambda_with.kt
 fun main() {
-    val str = with (StringBuilder()) {
+    val str = with (StringBuilder()) {                                                                          
         append("Hello, ")
         append("This ")
         append("is an example of ")
@@ -247,7 +267,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Collection 연산자 오버로딩
 * [] 
@@ -257,6 +277,9 @@ fun main() {
 * iterator
     * Iterator Implementation
     * iterator method
+
+
+## Collection 연산자 오버로딩 - 예제
 
 ```kotlin
 // src/collection_overload.kt
@@ -281,7 +304,9 @@ data class Three(var x: Int, var y: Int, var z: Int) : Iterable<Int> {
     }
 
     operator fun contains(value: Int) = (x == value || y == value || z == value)
-
+```
+## Collection 연산자 오버로딩 - 예제(계속)
+```kotlin
     inner class MyIterator : Iterator<Int> {
         var curIdx = 0
         override fun next(): Int {
@@ -308,7 +333,7 @@ fun main() {
         println(i)
 }
 ```
----
+
 
 ## Higher order Function
 
@@ -317,11 +342,9 @@ fun main() {
 * with, apply 등도 고차함수
 
 
----
 
-# 기타
 
-## 가변 인자
+## 기타 - 가변 인자
 * 가변 인자
   * vararg를 매개 변수 이름 앞에 사용함
   * spread 연산자: *를 배열앞에 붙여서 가변 인자로 넘겨줄 수 있음
@@ -334,7 +357,7 @@ val list2 = listOf("0", *args) // spread 연산자
 println(list2) // 0, 1, 2, 3, 4
 ```
 
-## Infix Function
+## 기타 - Infix Function
 * 함수 이름을 인자 중간에 넣어서 호출
 * 예) mapOf(1 to "one", 2 to "two") 에서 to와 같은 함수
 
@@ -343,7 +366,7 @@ println(list2) // 0, 1, 2, 3, 4
 infix fun Any.to(other: Any) = Pair(this, other)
 ```
 
-## Destructuring declaration
+## 기타 - Destructuring declaration
 * 값 2개를 리턴 받아 2개의 변수에 대입
 
 ```kotlin

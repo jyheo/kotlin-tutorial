@@ -1,5 +1,16 @@
+---
+marp: true
+theme: my-theme
+paginate: true
+headingDivider: 2
+header: Kotlin Tutorial - Basic https://github.com/jyheo/kotlin-tutorial
+footer: 
+backgroundColor: #fff
+---
 
 # Object Oriented Programming in Kotlin
+<!-- _class: lead -->
+### 허준영(jyheo@hansung.ac.kr)
 
 ## Contents
 
@@ -17,7 +28,6 @@
 * 연산자 오버로딩
 * Generic
 
----
 
 ## Class
 
@@ -28,6 +38,8 @@
   * 코틀린은 기본적으로 public class 임
   * 객체를 생성할 때 new 키워드를 쓰지 않음
   * 속성 접근 메소드를 자동으로 만들어주며, 커스텀 접근 메소드를 만들 수도 있음
+
+## Class - 예제
 
 ```kotlin
 // src/class_basic.kt
@@ -51,7 +63,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Interface
 
@@ -60,6 +72,8 @@ fun main() {
   * 자바처럼 default를 붙이진 않음
 * 인터페이스 구현 클래스의 메소드 구현에서 override를 반드시 써야 함
   * 클래스를 상속 받을 때에도, 메소드 오버라이드할 때 override를 씀
+
+## Interface - 예제
 
 ```kotlin
 // src/interface_basic.kt
@@ -79,7 +93,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## 기본적으로 상속, 오버라이드 금지
 
@@ -92,7 +106,9 @@ fun main() {
     * open :  오버라이드 가능, 명시적으로 open을 붙여야 오버라이드 가능
     * abstract : 반드시 오버라이드 해야 함, abstract class 내에서만 사용 가능
     * override : 오버라이드 가능
-    
+
+## 기본적으로 상속, 오버라이드 금지 - 예제
+
 ```kotlin
 // src/method_override.kt
 class NoInherit(val name: String)
@@ -128,7 +144,7 @@ fun main() {
 }
 ```
 
----
+
  
 ## 기본적으로 공개(public)
 
@@ -139,7 +155,7 @@ fun main() {
     * protected: 상속 받은 클래스에서만 접근 가능
     * private: 같은 클래스에서만 접근 가능
 
----
+
 
 ## 중첩(Nested) 클래스
 
@@ -159,7 +175,7 @@ class Outer(var m : Int = 0) {
     class NoInner {
         fun doSomething() {
             println("NoInner.doSomething")
-            // this@Outer  // cannot access Outer reference
+            // this@Outer  // cannot access Outer reference                                                     
         }
     }
 }
@@ -172,7 +188,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## 봉인(sealed) 클래스
 
@@ -198,13 +214,15 @@ fun main() {
 }
 ```
 
----
+
 
 ## Constructor
 
 * Primary constructor: 클래스 이름 옆에 정의하는 생성자
     * class Person(val name: String)
 * Secondary constructor: 클래스 내부에 정의하는 생성자
+
+## Constructor - 예제
 
 ```kotlin
 // src/constructor.kt
@@ -243,13 +261,15 @@ fun main() {
 }
 ```
 
----
+
 
 ## Property와 getter/setter
 
 * Property의 커스텀 setter와 getter를 정의할 수 있다.
     * public인 속성에 대해 setter를 private으로 하면 클래스 밖에서는 get만 가능함
 * Interface에 property를 정의할 수 있으나, 이 property는 구현 클래스에서 반드시 오버라이드 해야 한다.
+
+## Property와 getter/setter - 예제
 
 ```kotlin
 // src/getset.kt
@@ -276,7 +296,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Data Class
 
@@ -286,7 +306,7 @@ fun main() {
 ```kotlin
 // src/compare.kt
 data class MyClass(val a: Int, val b: String)
-// data class auto-generates equals/hashCode/toString/copy
+// data class auto-generates equals/hashCode/toString/copy                              
 
 fun main() {
     val str1 = "Hello, Kotlin"
@@ -300,10 +320,9 @@ fun main() {
     println(class1 == class3)  // false
     println(class1 === class2) // false
 }
-
 ```
 
----
+
 
 ## object 키워드
 
@@ -313,6 +332,7 @@ fun main() {
     * anonymous object를 만들때 사용
 * Companion object는 이 객체를 포함하는 클래스의 private 멤버에 접근 가능
 
+## object 키워드 - 예제
 ```kotlin
 // src/object.kt
 //interface ClickListener {
@@ -349,7 +369,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Extension Method/Property
 
@@ -361,7 +381,7 @@ fun main() {
 ```kotlin
 // src/extension_m.kt
 // method extension to Collection<T>
-fun <T> Collection<T>.join(separator: String = " ") : String
+fun <T> Collection<T>.join(separator: String = " ") : String                                                
 {
     val result = StringBuilder()
     for ((index, element) in withIndex()) {
@@ -377,7 +397,7 @@ fun main()
     println(arrayListOf(1, 2, 3).join(", ")) // 1, 2, 3
 }
 ```
-
+## Extension Method/Property - 계속
 * 속성도 마찬가지로 확장 가능
 
 ```kotlin
@@ -389,7 +409,7 @@ fun main() {
     println("Hello".lastChar)
 }
 ```
----
+
 
 ## 연산자 오버로딩
 
@@ -399,6 +419,8 @@ fun main() {
     * unaryPlus, unaryMinus, not, inc, dec
 * 비교 연산자
     * equals, compareTo
+
+## 연산자 오버로딩 - 예제
 
 ```kotlin
 // src/op_overload.kt
@@ -420,7 +442,7 @@ fun main() {
 }
 ```
 
----
+
 
 ## Generic
 
