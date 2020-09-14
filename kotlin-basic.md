@@ -602,7 +602,7 @@ fun main()
     mutableMap["four"] = 4
 
     println(arrayList) // [1, 2, 3, 5]
-    println(mutableList) // [1, 2, 3, 4]
+    println(mutableList) // [0, 2, 3, 4]
     println(mutableSet) // [1, 2, 3, 4]
     println(mutableMap) // {one=1, two=2, three=3, four=4}
 }
