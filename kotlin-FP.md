@@ -215,26 +215,23 @@ fun main() {
 * SAM: Single Abstract Method의 줄임말, 인터페이스가 하나의 메소드만 가진 경우
     * View.OnClickListener, Runnable 등 많은 인터페이스가 하나의 메소드만 가짐
 * 코틀린에서 이런 SAM인 경우 무명 클래스 인스턴스를 만드는 것이 아니라 lambda로 처리할 수 있음
+    ```kotlin
+    // src/lambda_sam.kt
+    fun doSomething(runnable: Runnable) = runnable.run()                                        
 
-```kotlin
-// src/lambda_sam.kt
-fun doSomething(runnable: Runnable) = runnable.run()
-fun doSomething2(runnable: Runnable) = runnable.run()                                               
-
-fun main() {
-    doSomething( Runnable { println("SAM") } )
-
-    doSomething(object : Runnable { // java
-        override fun run() {
-            println("Java way")
-        }
-    })
-
-    val runnable = Runnable { println("SAM") }
-    doSomething(runnable)
-    doSomething2(runnable)
-}
-```
+    fun main() {
+        doSomething(object : Runnable { // java-like
+            override fun run() {
+                println("Java-like way")
+            }
+        })
+        
+        doSomething( Runnable { println("SAM") } )
+        doSomething( { println("SAM 1") })
+        val runnable = { println("SAM 2") }
+        doSomething(runnable)
+    }
+    ```
 
 
 
