@@ -3,14 +3,23 @@ marp: true
 theme: my-theme
 paginate: true
 headingDivider: 2
-header: Kotlin Tutorial - Basic https://github.com/jyheo/kotlin-tutorial
-footer: 
+header: Kotlin Tutorial - Basic
+footer: https://github.com/jyheo/kotlin-tutorial
 backgroundColor: #fff
 ---
 
 # Kotlin Tutorial (Basic)
 <!-- _class: lead -->
 ### 허준영(jyheo@hansung.ac.kr)
+
+
+## Why Kotlin
+- 코틀린을 왜 배워야 합니까?
+- 안드로이드 앱 개발을 하기 위해서?
+    - Java로 개발 가능합니다만...
+- 편리함을 추구하는 언어
+- 간결함을 추구하는 언어
+- 명령형 언어, 객체지향 언어에 머물지 말고 함수형 언어 개념도 배웁시다.
 
 
 ## Contents
@@ -81,7 +90,7 @@ $ ./main.kexe
 
 * Koans in Website
    * https://play.kotlinlang.org/koans/overview
-* EduTools in Intellij IDEA
+* EduTools in IntelliJ IDEA
   * Installing the EduTools plugin 
   * Choosing Kotlin Koans course in Welcome dialog
 
