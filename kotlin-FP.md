@@ -217,19 +217,20 @@ fun main() {
 * 코틀린에서 이런 SAM인 경우 무명 클래스 인스턴스를 만드는 것이 아니라 lambda로 처리할 수 있음
     ```kotlin
     // src/lambda_sam.kt
-    fun doSomething(runnable: Runnable) = runnable.run()                                        
+    fun interface doInterface { // SAM
+        fun doIt()
+    }
+    fun doSomething(di: doInterface) = di.doIt()
 
     fun main() {
-        doSomething(object : Runnable { // java-like
-            override fun run() {
-                println("Java-like way")
-            }
+        doSomething(object : doInterface { // java-like
+            override fun doIt() { println("Java-like way") }
         })
         
-        doSomething( Runnable { println("SAM") } )
-        doSomething( { println("SAM 1") })
-        val runnable = { println("SAM 2") }
-        doSomething(runnable)
+        doSomething( doInterface { println("SAM") } )
+        doSomething { println("SAM 1") }
+        val doi = { println("SAM 2") }
+        doSomething(doi)
     }
     ```
 
