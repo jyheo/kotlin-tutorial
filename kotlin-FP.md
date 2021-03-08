@@ -12,6 +12,20 @@ backgroundColor: #fff
 <!-- _class: lead -->
 ### 허준영(jyheo@hansung.ac.kr)
 
+## Contents
+- Functional Programming (FP) ?
+- Lambda
+- Collection filter, map, groupBy와 lambda
+- Collection all, any, count, find와 lambda
+- Collection flatMap과 lambda
+- Collection asSequence
+- lambda와 SAM
+- lambda with, apply
+- Collection 연산자 오버로딩
+- Higher order Function
+- 기타 - 가변 인자
+- 기타 - Infix Function
+- 기타 - Destructuring declaration
 
 ## Functional Programming (FP) ?
 
