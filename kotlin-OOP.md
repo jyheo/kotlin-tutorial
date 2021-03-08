@@ -26,6 +26,8 @@ backgroundColor: #fff
 * object 키워드
 * Extension Method/Property
 * 연산자 오버로딩
+* 위임(Delegation)
+* 위임 속성(Delegated Property)
 * Generic
 
 
@@ -443,6 +445,99 @@ fun main() {
 ```
 
 
+## 위임(Delegation)
+- 상속과 유사하지만 다른
+    - 상속은 강한 결합, 위임은 약한 결합
+    - 상속 불가여도 위임은 가능
+    - 위임(상속)할 클래스와 동일한 인터페이스를 구현해야 함
+- 위임 패턴은 위임(상속)할 객체를 멤버로 만들고 특정 메소스 호출시 위임 객체의 메소드로 포워드(호출)하는 방식으로 만듬
+    - 위임 객체의 메소드 각각에 대해 메소드를 새로 만들어서 포워드 해야 함
+- 코틀린은 by 키워드로 위임을 쉽게 지원함
+
+
+---
+```kotlin
+interface Base {
+    fun print()
+    fun printHello()
+}
+
+class BaseImpl(val x: Int) : Base {
+    override fun print() { print(x) }
+    override fun printHello() { println("Hello")}
+}
+
+class Derived(val b: Base) : Base by b {
+    override fun print() { // 오버라이드
+        b.print()
+        println("ok")
+    }
+}
+
+fun main() {
+    val b = BaseImpl(10)
+    val d = Derived(b)
+    d.print()      // Derived에서 오버라이드한 것을 사용
+    d.printHello()  // Derived에서 구현하지 않았으나 b의 것을 사용 가능
+}
+```
+
+
+## 위임 속성(Delegated Property)
+- by 키워드를 써서 속성의 get/set을 위임 객체의 getValue/setValue로 위임함
+- 이를 이용하여 특별한 성질을 갖는 속성을 만듬
+    - Lazy 특성: 값을 처음 접근할 때 생성/계산함
+    - Observable 특성: 값이 변경될  때 알려주는 리스너를 지정
+    - Map을 이용하여 객체 속성 값을 저장
+- 다른 속성으로 위임할 수도 있음
+    ```kotlin
+    class MyClass {
+        var newName: Int = 0
+        @Deprecated("Use 'newName' instead", ReplaceWith("newName"))
+        var oldName: Int by this::newName
+    }
+    ```
+
+---
+```kotlin
+import kotlin.properties.Delegates
+
+class User(val map: MutableMap<String, Any?>) {
+    val lazyValue: String by lazy {
+        println("computed!")
+        "Hello"
+    }
+    
+    var name: String by map
+    var age: Int     by map
+    
+    var nameOb: String by Delegates.observable("<no name>") {
+        prop, old, new ->
+        println("$old -> $new")
+    }
+}
+```
+---
+```kotlin
+fun main() {      
+    val user = User(mutableMapOf(
+        "name" to "John Doe",
+        "age"  to 25
+    ))
+    
+    println(user.lazyValue)  // computed!  Hello
+    println(user.lazyValue)  // Hello
+    
+    println(user.name) // John Doe
+	println(user.age)  // 25    
+    user.age = 30
+    println(user.map)  // {name=John Doe, age=30}
+    
+    user.nameOb = "first"   // <no name> -> first
+    user.nameOb = "second"  // first -> second
+}
+
+```
 
 ## Generic
 
