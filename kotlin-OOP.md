@@ -13,7 +13,7 @@ backgroundColor: #fff
 ### 허준영(jyheo@hansung.ac.kr)
 
 ## Contents
-
+<!-- _class: double -->
 * Class
 * Interface
 * 기본적으로 상속, 오버라이드 금지
