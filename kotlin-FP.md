@@ -3,8 +3,8 @@ marp: true
 theme: my-theme
 paginate: true
 headingDivider: 2
-header: Kotlin Tutorial - Basic https://github.com/jyheo/kotlin-tutorial
-footer: 
+header: Kotlin Tutorial - Functional Programming 
+footer: https://github.com/jyheo/kotlin-tutorial
 backgroundColor: #fff
 ---
 
@@ -20,12 +20,11 @@ backgroundColor: #fff
 - Collection flatMap과 lambda
 - Collection asSequence
 - lambda와 SAM
-- lambda with, apply
+- Scope 함수
 - Collection 연산자 오버로딩
-- Higher order Function
-- 기타 - 가변 인자
-- 기타 - Infix Function
-- 기타 - Destructuring declaration
+- 가변 인자
+- Infix Function
+- Destructuring declaration
 
 ## Functional Programming (FP) ?
 
@@ -110,6 +109,7 @@ fun main()
 * map: 모든 원소에 대해 특정 연산을 수행한 결과를 모아서 Collection을 생성/리턴
     * map에 주어진 람다를 모든 원소에 대해 수행하고 그 결과를 모음
 * groupBy: 주어진 조건에 따라 Collection을 그룹으로 나눈 후 map을 생성/리턴
+* 참고: Collection은 언어 문법이 아니고 표준 라이브러리임
 
 ## Collection filter, map, groupBy와 lambda - 예제
 
@@ -250,17 +250,23 @@ fun main() {
 
 
 
-## lambda with, apply
+## Scope 함수
+- Scope 함수
+- 객체의 이름을 반복하지 않고 그 객체에 대해 여러 연산을 수행할 수 있음
+- 종류: let, run, with, apply, also
+- 함수 인자로 lambda를 전달하는 데, 이 lambda 내에서 객체를 it으로 또는 this로 지칭
+- 함수의 리턴 값은 객체 자체 또는 lambda의 결과
+- 참고: Scope 함수는 언어 문법이 아니고 표준 라이브러리임
+- 참고: https://kotlinlang.org/docs/scope-functions.html#function-selection
+
+---
 
 * with, apply
-* 객체의 이름을 반복하지 않고 그 객체에 대해 여러 연산을 수행할 수 있음
-* 참고: https://takhyeongmin.github.io/2018/12/03/kotlinUsefulFunction2/
-
 ```kotlin
 // src/lambda_with.kt
 fun main() {
-    val str = with (StringBuilder()) {                                                                          
-        append("Hello, ")
+    val str = with (StringBuilder()) { // this로 객체 지칭
+        append("Hello, ")  // this 생략
         append("This ")
         append("is an example of ")
         append("lambda with.")
@@ -269,8 +275,8 @@ fun main() {
     } // with returns the last expression
     println(str)
 
-    val str2 = StringBuilder().apply {
-        append("Hello, ")
+    val str2 = StringBuilder().apply {  // this로 객체 지칭
+        append("Hello, ")  // this 생략
         append("This ")
         append("is an example of ")
         append("lambda with.")
@@ -279,7 +285,27 @@ fun main() {
 }
 ```
 
-
+---
+- let, run, also
+```kotlin
+fun main() {    
+    val r1 = "hello".let {
+        println("$it")
+        it.length        
+    }
+    
+    val r2 = "hello".run {
+        println("$this")
+        length
+    }
+    
+    val r3 = "hello".also {
+        println("$it")
+    }.length
+    
+    println("$r1, $r2, $r3")   // 5, 5, 5    
+}
+```
 
 ## Collection 연산자 오버로딩
 * [] 
@@ -317,6 +343,7 @@ data class Three(var x: Int, var y: Int, var z: Int) : Iterable<Int> {
 
     operator fun contains(value: Int) = (x == value || y == value || z == value)
 ```
+
 ## Collection 연산자 오버로딩 - 예제(계속)
 ```kotlin
     inner class MyIterator : Iterator<Int> {
@@ -346,17 +373,7 @@ fun main() {
 }
 ```
 
-
-## Higher order Function
-
-* 고차 함수: 다른 함수를 인자로 받거나 리턴하는 함수를 말한다.
-* Collection의 filter, map 등도 고차함수
-* with, apply 등도 고차함수
-
-
-
-
-## 기타 - 가변 인자
+## 가변 인자
 * 가변 인자
   * vararg를 매개 변수 이름 앞에 사용함
   * spread 연산자: *를 배열앞에 붙여서 가변 인자로 넘겨줄 수 있음
@@ -369,7 +386,7 @@ val list2 = listOf("0", *args) // spread 연산자
 println(list2) // 0, 1, 2, 3, 4
 ```
 
-## 기타 - Infix Function
+## Infix Function
 * 함수 이름을 인자 중간에 넣어서 호출
 * 예) mapOf(1 to "one", 2 to "two") 에서 to와 같은 함수
 
@@ -378,7 +395,7 @@ println(list2) // 0, 1, 2, 3, 4
 infix fun Any.to(other: Any) = Pair(this, other)
 ```
 
-## 기타 - Destructuring declaration
+## Destructuring declaration
 * 값 2개를 리턴 받아 2개의 변수에 대입
 
 ```kotlin
