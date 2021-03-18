@@ -3,8 +3,8 @@ marp: true
 theme: my-theme
 paginate: true
 headingDivider: 2
-header: Kotlin Tutorial - Basic https://github.com/jyheo/kotlin-tutorial
-footer: 
+header: Kotlin Tutorial - OOP 
+footer: https://github.com/jyheo/kotlin-tutorial
 backgroundColor: #fff
 ---
 
