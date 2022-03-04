@@ -57,7 +57,7 @@ backgroundColor: #fff
 
 * 코틀린 컴파일러를 쉽게 설치해보려면..
 * IntelliJ IDEA를 쓰자. 커뮤니티 버전은 무료, 학생 인증 받으면 Ultimate 버전도 무료
-* https://kotlinlang.org/docs/tutorials/getting-started.html
+* https://kotlinlang.org/docs/getting-started.html
 * 안드로이드 스튜디오
     * File > New > Scratch File > Kotlin
     * 스크래치 파일에서 코틀린 연습이 가능함
@@ -101,8 +101,8 @@ $ ./main.kexe
 * 다양한 플랫폼 지원
   * JVM 기반의 서버, 안드로이드
   * 코틀린 자바스크립트
-  * 코틀린-native(iOS, MacOS, Android, Windows, Linux)
-  * 코틀린-멀티플랫폼-모바일(KMM)
+  * 코틀린-native(iOS, MacOS, Android NDK, Windows, Linux)
+  * 코틀린-멀티플랫폼
 * 정적 타입 언어
   * statically typed lang. (java, kotlin)
   * dynamically typed lang. (python)
