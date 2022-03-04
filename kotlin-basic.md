@@ -19,7 +19,7 @@ backgroundColor: #fff
     - Java로 개발 가능합니다만...
 - 편리함을 추구하는 언어
 - 간결함을 추구하는 언어
-- 명령형 언어, 객체지향 언어에 머물지 말고 함수형 언어 개념도 배웁시다.
+- 명령형 언어, 객체지향 언어에 함수형 언어 개념
 
 
 ## Contents
@@ -71,7 +71,7 @@ backgroundColor: #fff
 * Github Kotlin Release에서 다운로드
   * https://github.com/JetBrains/kotlin
   * kotlin-compiler-1.X.zip : jar로 만들 수 있는 JVM 기반 버전, JDK가 필요함
-  * kotlin-native-????-1.3.50.tar.gz : 네이티브용 kotlin
+  * kotlin-native-????-1.X.tar.gz : 네이티브용 kotlin
 * 다운로드 받은 파일 압축을 푼 후 bin/kotlinc 를 실행하면 됨
   * 편의를 위해 bin 폴더를 PATH에 넣어둔다.
 
