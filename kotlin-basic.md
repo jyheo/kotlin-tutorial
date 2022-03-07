@@ -28,7 +28,6 @@ backgroundColor: #fff
 * Kotlin 컴파일러 직접 설치하기
 * Kotlin, Teach yourself
 * 코틀린의 특징
-* 코틀린 철학
 * 패키지(Packages)
 * 변수와 값(Variables & Value)
 * 타입 추론(Type Inference))
