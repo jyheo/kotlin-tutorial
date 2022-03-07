@@ -98,33 +98,19 @@ $ ./main.kexe
 
 ## 코틀린의 특징
 
-* 다양한 플랫폼 지원
-  * JVM 기반의 서버, 안드로이드
-  * 코틀린 자바스크립트
-  * 코틀린-native(iOS, MacOS, Android NDK, Windows, Linux)
-  * 코틀린-멀티플랫폼
-* 정적 타입 언어
-  * statically typed lang. (java, kotlin)
-  * dynamically typed lang. (python)
-* Type inference
-    ```kotlin
-    val x = 1 // x는 integer
-    val x = "Hello" // x는 String
-    ```
-* 함수형 언어 (Functional Lang)
-* 오픈 소스
-
-
-
-## 코틀린 철학
-
 * 실용성
   * 이미 검증되고 많이 사용되는 언어 기능을 채택
 * 간결성
-  * getter/setter
+  * 타입 추론, getter/setter
 * 안정성(Null Safety)
 * Interoperability
-
+* 다양한 플랫폼 지원
+  * JVM 기반의 서버, 안드로이드, 코틀린 자바스크립트, 코틀린-native(iOS, MacOS, Android NDK, Windows, Linux)
+* 정적 타입 언어
+  * statically typed lang. (java, kotlin)
+  * dynamically typed lang. (python)
+* 함수형 언어 (Functional Lang)
+* 오픈 소스
 
 
 ## 패키지(Packages)
