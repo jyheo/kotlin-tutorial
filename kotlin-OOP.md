@@ -49,7 +49,7 @@ class Animal(val name: String)
 
 class Person(val firstName: String, _lastName: String) {
     var lastName: String = _lastName
-        get () = field.toUpperCase()
+        get () = field.uppercase()
         set (value) {
             field = "[$value]"
         }
@@ -284,7 +284,7 @@ class GetSet(_prop: String) : GetSetI {
         set(value) {
             field = value.substringBefore('@')
         }
-        get() = field.toUpperCase()
+        get() = field.uppercase()
     var prop2: Int = 0
         private set // prop2 cannot be changed outside of this class
 }

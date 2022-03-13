@@ -2,7 +2,7 @@ class Animal(val name: String)
 
 class Person(val firstName: String, _lastName: String) {
     var lastName: String = _lastName
-        get () = field.toUpperCase()
+        get () = field.uppercase()
         set (value) {
             field = "[$value]"
         }
