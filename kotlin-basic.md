@@ -58,8 +58,6 @@ backgroundColor: #fff
 * IntelliJ IDEA를 쓰자. 커뮤니티 버전은 무료, 학생 인증 받으면 Ultimate 버전도 무료
 * https://kotlinlang.org/docs/getting-started.html
 * 안드로이드 스튜디오
-    * File > New > Scratch File > Kotlin
-    * 스크래치 파일에서 코틀린 연습이 가능함
 * 온라인 https://play.kotlinlang.org/
 
 
