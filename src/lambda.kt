@@ -1,4 +1,4 @@
-// data class MyClass(val a: Int, val b: String)
+data class MyClass(val a: Int, val b: String)
 
 fun lambdaTest(a : (Int) -> Int) : Int {
     return a(10)

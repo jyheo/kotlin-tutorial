@@ -1,6 +1,6 @@
-//interface ClickListener {
-//    fun onClick()
-//}
+interface ClickListener {
+    fun onClick()
+}
 
 object ClickListenerImpl : ClickListener {
     override fun onClick() = println("clicked")
